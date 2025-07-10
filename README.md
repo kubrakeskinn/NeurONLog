@@ -44,28 +44,6 @@ Bu sayede mühendislerin debug süreçlerini hızlandırır ve Intel toolchain'l
 └────────────────────┘
 ```
 
-## 📂 Proje Yapısı
-
-```
-NeurONLog/
-├── main.py                  # CLI entrypoint
-├── parser.py                # Log temizleme ve parse etme
-├── classifier.py            # Hata sınıflandırma
-├── explainer.py             # Açıklama oluşturma
-├── fixer.py                 # Çözüm önerileri
-├── formatter.py             # Markdown formatında çıktı
-├── examples/                # Örnek log dosyaları
-│   ├── dpcpp_errors.log
-│   ├── vtune_errors.log
-│   └── quartus_errors.log
-├── prompts/                 # LLM prompt şablonları
-│   ├── explanation_prompts.txt
-│   └── fix_prompts.txt
-├── requirements.txt         # Python bağımlılıkları
-├── README.md               # Bu dosya
-├── LICENSE                 # MIT License
-└── .gitignore             # Git ignore kuralları
-```
 
 ## 🧩 Modüller
 
