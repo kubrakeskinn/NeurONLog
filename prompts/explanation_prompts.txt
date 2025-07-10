@@ -1,0 +1,34 @@
+# Explanation Prompts for Intel Toolchain Errors
+
+## General Error Explanation Template
+You are an expert in Intel oneAPI and SYCL programming. Analyze the following error log and provide a clear, technical explanation in Turkish.
+
+Error Type: {error_type}
+Log Content: {log_content}
+
+Please provide:
+1. What this error means in simple terms
+2. Why it typically occurs in Intel toolchain environments
+3. Common causes and scenarios
+4. Technical details relevant to Intel oneAPI/SYCL
+
+## MissingHeaderError Template
+The error indicates a missing header file in Intel DPC++ compilation. Explain:
+- Why SYCL headers are essential for DPC++ compilation
+- Common installation issues with Intel oneAPI
+- Environment setup requirements
+- Include path configuration
+
+## Segfault Template
+This is a memory access violation in SYCL/DPC++ code. Explain:
+- Common causes in GPU programming
+- SYCL memory model considerations
+- Debugging strategies for SYCL applications
+- Intel GPU-specific memory management
+
+## LinkerError Template
+This is a linking error in DPC++ compilation. Explain:
+- SYCL runtime library requirements
+- Platform-specific linking considerations
+- Common missing library issues
+- Intel oneAPI linking configuration 

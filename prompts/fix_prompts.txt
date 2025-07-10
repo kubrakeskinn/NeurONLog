@@ -1,0 +1,42 @@
+# Fix Recommendation Prompts for Intel Toolchain Errors
+
+## General Fix Template
+You are an Intel oneAPI expert. Provide 2-3 specific, actionable solutions for the following error.
+
+Error Type: {error_type}
+Log Content: {log_content}
+Platform: {platform}
+
+Provide solutions that include:
+1. Specific commands to run
+2. Step-by-step instructions
+3. Platform-specific considerations (Linux/Windows/macOS)
+4. Verification steps
+
+## MissingHeaderError Fix Template
+For missing SYCL headers, provide solutions including:
+- Intel oneAPI installation commands
+- Environment variable setup
+- Include path configuration
+- Compiler flag usage
+
+## Segfault Fix Template
+For segmentation faults in SYCL code, provide solutions including:
+- Debug compilation flags
+- Memory debugging tools
+- SYCL-specific debugging techniques
+- Code review suggestions
+
+## LinkerError Fix Template
+For linking errors, provide solutions including:
+- SYCL library linking commands
+- Platform-specific library paths
+- Compiler flag combinations
+- Runtime library verification
+
+## VTuneError Fix Template
+For VTune Profiler errors, provide solutions including:
+- Driver installation commands
+- Permission setup
+- System configuration
+- Alternative profiling approaches 
