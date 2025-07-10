@@ -1,7 +1,6 @@
 # 🧠 NeurONLog - LLM-Powered Error Log Debugger for Intel Toolchains
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Intel oneAPI](https://img.shields.io/badge/Intel-oneAPI-orange.svg)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html)
 
 Intel toolchain'lerinden gelen hata loglarını analiz eden, sınıflandıran ve çözüm önerileri sunan AI destekli debug aracı.
