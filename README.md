@@ -166,19 +166,6 @@ type error.log | python main.py
 * 🧪 Pre-deployment failure analysis
 
 ---
-
-## 🎯 Design Philosophy
-
-> “Neural models understand ambiguity. Symbolic systems guarantee reasoning.”
-
-NeurONLog ensures:
-
-* Explainability
-* Deterministic reasoning
-* Engineering-grade outputs
-
----
-
 ## 🛠️ Tech Stack
 
 * Python
@@ -186,44 +173,7 @@ NeurONLog ensures:
 * Rule-based inference engine
 * Tree-sitter (planned / optional)
 * Datalog (planned extension)
-
 ---
-
-## 🚧 Roadmap
-
-* [ ] Unified CLI (`neuronlog run`)
-* [ ] Web-based demo UI (Streamlit)
-* [ ] Multi-language support (C, C++, Rust)
-* [ ] Local LLM support
-* [ ] CI-based evaluation benchmarks
-
----
-
-## 🏁 Status
-
-> 🔬 Prototype → 🚀 Productization Phase
-
----
-
-## 💡 One-Line Pitch
-
-> NeurONLog is an AI-powered debugging engine that converts low-level system logs into structured, explainable failure reasoning.
-
----
-
-## 👤 Author
-
-Developed by Kübra Keskin
-AI Engineer Candidate — Focused on Defense & Intelligent Systems
-
----
-
-## ⭐ Contributing
-
-Contributions, issues, and feature requests are welcome.
-
----
-
 ## 📄 License
 
 MIT License
