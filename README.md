@@ -2,238 +2,228 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Intel oneAPI](https://img.shields.io/badge/Intel-oneAPI-orange.svg)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html)
+---
 
-Intel toolchain'lerinden gelen hata loglarını analiz eden, sınıflandıran ve çözüm önerileri sunan AI destekli debug aracı.
+## 🚀 Overview
 
-## 🎯 Proje Amacı
+**NeurONLog** is a hybrid AI system designed to analyze low-level system logs and C/C++ code, transforming them into **structured, explainable failure reasoning**.
 
-NeurONLog, Intel oneAPI DPC++ compiler, VTune Profiler, Quartus Prime gibi Intel toolchain'lerinden gelen hata loglarını analiz ederek:
+It combines:
 
-- **Hata türlerini otomatik sınıflandırır**
-- **İnsan dilinde açıklamalar üretir**
-- **Hedefli çözüm önerileri sunar**
-- **Markdown formatında raporlar oluşturur**
+* 🧠 **Large Language Models (LLMs)** for semantic understanding
+* ⚙️ **Symbolic reasoning (rule-based / Datalog)** for deterministic analysis
+* 🔍 **Static analysis principles** for root cause detection
 
-Bu sayede mühendislerin debug süreçlerini hızlandırır ve Intel toolchain'lerini daha verimli kullanmalarını sağlar.
+> 🎯 Goal: Convert opaque system errors into actionable engineering insights.
 
-## 🏗️ Sistem Mimarisi
+---
 
-```
-┌────────────┐
-│ Raw Log In │ ◀──── stdin / file
-└────┬───────┘
-     ▼
-┌────────────────────┐
-│ Log Parser & Cleaner│
-└────────────────────┘
-     ▼
-┌────────────────────┐
-│ Error Classifier   │ ← Regex + keywords + optional LLM
-└────────────────────┘
-     ▼
-┌──────────────────────────┐
-│ Explanation Generator    │ ← LLM call (Chain-of-Thought)
-└──────────────────────────┘
-     ▼
-┌──────────────────────────┐
-│ Fix Recommender          │ ← LLM or rule-based suggestions
-└──────────────────────────┘
-     ▼
-┌────────────────────┐
-│ Markdown Formatter │
-└────────────────────┘
-```
+## 🔥 Key Features
 
+### 🧠 AI-Powered Log Understanding
 
-## 🧩 Modüller
+* Parses raw compiler/runtime logs
+* Extracts semantic meaning from unstructured error messages
+* Identifies failure patterns
 
-### 1. `parser.py` - Log Parser & Cleaner
-- Ham log metnini temizler ve normalize eder
-- Timestamp'leri, gereksiz whitespace'leri kaldırır
-- Dosya yollarını güvenlik için kısaltır
-- Hata ile ilgili satırları filtreler
+---
 
-### 2. `classifier.py` - Error Classifier
-- Intel toolchain hatalarını sınıflandırır
-- Regex pattern'leri ile hata türlerini tespit eder
-- Güvenilirlik skorları hesaplar
-- Bağlam bilgilerini çıkarır
+### ⚙️ Symbolic Reasoning Engine
 
-### 3. `explainer.py` - Explanation Generator
-- Hata türleri için önceden tanımlanmış açıklamalar
-- Intel toolchain bağlamında detaylı açıklamalar
-- Yaygın nedenler ve çözüm yolları
+* Transforms extracted data into structured facts
+* Applies rule-based inference for deterministic reasoning
+* Tracks failure propagation chains
 
-### 4. `fixer.py` - Fix Recommender
-- Hata türüne özel çözüm önerileri
-- Platform-specific komutlar (Linux, Windows, macOS)
-- Adım adım çözüm rehberleri
+---
 
-### 5. `formatter.py` - Markdown Formatter
-- Analiz sonuçlarını markdown formatında formatlar
-- Intel dokümantasyon linkleri
-- Görsel emoji'ler ve renkli çıktılar
+### 🔍 Root Cause Analysis
 
-## 🚀 Kurulum
+Detects and explains:
 
-### Gereksinimler
-- Python 3.8 veya üzeri
-- Intel oneAPI toolkit (opsiyonel, test için)
+* Segmentation faults
+* Memory access violations
+* Pointer misuse
+* Toolchain-specific errors (Intel, SYCL, GPU)
 
-### Kurulum Adımları
+---
 
-1. **Repository'yi klonlayın:**
+### 📊 Explainable Outputs
+
+Each analysis provides:
+
+* ✅ Error classification
+* 📈 Confidence score
+* 🔴 Severity level
+* 🔗 Reasoning path
+* 🛠️ Actionable fix suggestions
+
+---
+
+## 🧪 Demo
+
+### ▶️ Input
+
 ```bash
-git clone https://github.com/yourusername/NeurONLog.git
+python main.py -i "fatal error: segmentation fault in pointer dereference"
+```
+
+---
+
+### 📤 Output
+
+```text
+Type: Segmentation Fault
+Severity: CRITICAL
+Confidence: 88%
+
+Root Cause:
+Invalid pointer dereference
+
+Explanation Path:
+log → runtime failure → memory violation → segfault
+
+Suggested Fix:
+- Check null pointers
+- Validate memory boundaries
+- Debug with gdb / valgrind
+```
+
+---
+
+## 🧱 System Architecture
+
+```text
+                ┌──────────────────────────┐
+                │  Input Layer             │
+                │  (Logs / C / C++ Code)   │
+                └────────────┬─────────────┘
+                             │
+                             ▼
+        ┌─────────────────────────────────────┐
+        │  1. Semantic Extraction (LLM)       │
+        └────────────┬────────────────────────┘
+                     │
+                     ▼
+        ┌─────────────────────────────────────┐
+        │  2. Fact Generation Layer           │
+        └────────────┬────────────────────────┘
+                     │
+                     ▼
+        ┌─────────────────────────────────────┐
+        │  3. Symbolic Reasoning Engine       │
+        └────────────┬────────────────────────┘
+                     │
+                     ▼
+        ┌─────────────────────────────────────┐
+        │  4. Explanation Generator           │
+        └─────────────────────────────────────┘
+```
+
+---
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/kubrakeskinn/NeurONLog
 cd NeurONLog
-```
 
-2. **Python bağımlılıklarını yükleyin:**
-```bash
+python -m venv venv
+venv\Scripts\activate   # Windows
+# source venv/bin/activate  # Mac/Linux
+
 pip install -r requirements.txt
 ```
 
-3. **Çalıştırılabilir yapın:**
+---
+
+## ▶️ Usage
+
+### 1. Direct Input
+
 ```bash
-chmod +x main.py
+python main.py -i "your error message"
 ```
 
-## 💻 Kullanım
+### 2. File Input
 
-### Temel Kullanım
-
-**Dosyadan log analizi:**
 ```bash
 python main.py -f error.log
 ```
 
-**Doğrudan metin girişi:**
-```bash
-python main.py -i "fatal error: 'CL/sycl.hpp' file not found"
-```
-
-**stdin'den okuma:**
-```bash
-cat error.log | python main.py
-```
-
-**Çıktıyı dosyaya yazma:**
-```bash
-python main.py -f error.log -o analysis_report.md
-```
-
-**Detaylı çıktı:**
-```bash
-python main.py -f error.log -v
-```
-
-### Örnek Çıktı
-
-```markdown
-# 🧠 Intel Toolchain Hata Analizi
-
-**Analiz Tarihi:** 2024-01-15 14:30:25
-
-## 🔍 Hata Özeti
-
-**Hata Türü:** `MissingHeaderError`  
-**Güvenilirlik:** 95.0%  
-**Önem Derecesi:** 🟡 Medium
-
-Header dosyası bulunamadı
-
-### 📋 Bağlam Bilgileri
-
-- **Compiler:** Intel DPC++
-- **Etkilenen Dosyalar:** main.cpp
-- **Hata Mesajları:** 'CL/sycl.hpp' file not found
-
-## 📖 Açıklama
-
-### Header Dosyası Bulunamadı
-
-Bu hata, derleyicinin gerekli header dosyasını bulamadığında ortaya çıkar...
-
-## 🛠️ Önerilen Çözümler
-
-### 1. Intel oneAPI DPC++ Toolkit Kurulumu
-
-Intel oneAPI DPC++ toolkit'in doğru kurulduğundan emin olun
-
-**Komutlar:**
-```bash
-sudo apt-get install intel-oneapi-dpcpp-compiler
-source /opt/intel/oneapi/setvars.sh
-```
-
-**Adımlar:**
-- Intel oneAPI Base Toolkit'i indirin
-- Kurulum sırasında DPC++ compiler seçeneğini işaretleyin
-- Kurulum sonrası environment'ı source edin
-```
-
-## 🔧 Desteklenen Hata Türleri
-
-| Hata Türü | Açıklama | Önem |
-|-----------|----------|------|
-| `MissingHeaderError` | Header dosyası bulunamadı | Medium |
-| `Segfault` | Bellek erişim hatası | Critical |
-| `LinkerError` | Bağlayıcı hatası | High |
-| `SyntaxError` | Sözdizimi hatası | Medium |
-| `SemanticError` | Anlamsal hata | Medium |
-| `OpenCLError` | OpenCL hatası | High |
-| `SYCLError` | SYCL hatası | High |
-| `VTuneError` | VTune Profiler hatası | Medium |
-| `QuartusError` | Quartus Prime hatası | High |
-| `MemoryError` | Bellek hatası | Critical |
-
-## Test
-
-### Örnek Log Dosyaları
-
-`examples/` klasöründe farklı Intel toolchain'lerinden örnek hata logları bulunmaktadır:
+### 3. Pipe Input
 
 ```bash
-# DPC++ compiler hatası
-python main.py -f examples/dpcpp_errors.log
-
-# VTune Profiler hatası
-python main.py -f examples/vtune_errors.log
-
-# Quartus Prime hatası
-python main.py -f examples/quartus_errors.log
+type error.log | python main.py
 ```
 
-### Test Senaryoları
+---
 
-```bash
-# Basit header hatası testi
-echo "fatal error: 'CL/sycl.hpp' file not found" | python main.py
+## 🧩 Use Cases
 
-# Linker hatası testi
-echo "undefined reference to 'sycl::queue::submit'" | python main.py
+* 🛡️ Defense software debugging
+* ⚙️ Compiler/toolchain error analysis
+* 🚀 Embedded systems diagnostics
+* 🧪 Pre-deployment failure analysis
 
-# Segfault testi
-echo "Segmentation fault (core dumped)" | python main.py
-```
+---
 
-## Geliştirme
+## 🎯 Design Philosophy
 
-### Yeni Hata Türü Ekleme
+> “Neural models understand ambiguity. Symbolic systems guarantee reasoning.”
 
-1. `classifier.py` dosyasında `ERROR_PATTERNS` sözlüğüne yeni pattern'ler ekleyin
-2. `explainer.py` dosyasında `ERROR_EXPLANATIONS` sözlüğüne açıklama ekleyin
-3. `fixer.py` dosyasında `ERROR_FIXES` sözlüğüne çözüm önerileri ekleyin
+NeurONLog ensures:
 
-### LLM Entegrasyonu
+* Explainability
+* Deterministic reasoning
+* Engineering-grade outputs
 
-LLM entegrasyonu için `prompts/` klasöründeki şablonları kullanabilirsiniz:
+---
 
-```python
-# Örnek LLM entegrasyonu
-from prompts import get_explanation_prompt
+## 🛠️ Tech Stack
 
-prompt = get_explanation_prompt(error_type, log_content)
+* Python
+* LLM APIs (Claude / OpenAI)
+* Rule-based inference engine
+* Tree-sitter (planned / optional)
+* Datalog (planned extension)
 
+---
 
-**NeurONLog** - Intel toolchain'leri için akıllı hata analizi 🧠 
+## 🚧 Roadmap
+
+* [ ] Unified CLI (`neuronlog run`)
+* [ ] Web-based demo UI (Streamlit)
+* [ ] Multi-language support (C, C++, Rust)
+* [ ] Local LLM support
+* [ ] CI-based evaluation benchmarks
+
+---
+
+## 🏁 Status
+
+> 🔬 Prototype → 🚀 Productization Phase
+
+---
+
+## 💡 One-Line Pitch
+
+> NeurONLog is an AI-powered debugging engine that converts low-level system logs into structured, explainable failure reasoning.
+
+---
+
+## 👤 Author
+
+Developed by Kübra Keskin
+AI Engineer Candidate — Focused on Defense & Intelligent Systems
+
+---
+
+## ⭐ Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+---
+
+## 📄 License
+
+MIT License
